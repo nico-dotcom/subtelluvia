@@ -357,7 +357,7 @@ fig1.update_layout(
     yaxis={**AXIS_STYLE, "tickformat": ".2s"},
 )
 
-st.plotly_chart(fig1, use_container_width=True)
+st.plotly_chart(fig1, width="stretch")
 
 # Insight automático
 if len(lluvia_agg) >= 2:
@@ -386,8 +386,8 @@ st.markdown('<p class="section-title">🌡️ Temperatura vs. Demanda de Subte (
 # Tamaño del punto según intensidad de lluvia (escala visual)
 size_map = {"0. Sin Lluvia": 5, "1. Lluvia Leve": 9, "2. Moderada": 14, "3. Temporal Fuerte": 20}
 df_sc = df.copy()
-df_sc["tamaño"] = df_sc["intensidad_lluvia"].map(size_map).fillna(5)
-df_sc["lluvia_label"] = df_sc["intensidad_lluvia"].map(LLUVIA_LABELS).fillna(df_sc["intensidad_lluvia"].astype(str))
+df_sc["tamaño"] = df_sc["intensidad_lluvia"].astype(str).map(size_map).fillna(5)
+df_sc["lluvia_label"] = df_sc["intensidad_lluvia"].astype(str).map(LLUVIA_LABELS).fillna(df_sc["intensidad_lluvia"].astype(str))
 
 fig2 = px.scatter(
     df_sc,
@@ -423,7 +423,7 @@ fig2.add_annotation(
     align="right",
 )
 
-st.plotly_chart(fig2, use_container_width=True)
+st.plotly_chart(fig2, width="stretch")
 st.markdown("<hr>", unsafe_allow_html=True)
 
 
@@ -510,7 +510,7 @@ fig3.update_layout(
     hovermode="x unified",
 )
 
-st.plotly_chart(fig3, use_container_width=True)
+st.plotly_chart(fig3, width="stretch")
 
 
 # ══════════════════════════════════════════════════════════════════════════════
